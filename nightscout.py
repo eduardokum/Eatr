@@ -2,6 +2,7 @@ import datetime
 import requests
 import json
 import os
+import sys
 from configparser import ConfigParser
 
 # reading config file
@@ -36,3 +37,4 @@ def postCarbsToNightscout(carbs, protein, fat):
 	print('Carbs Added: ' + carbs + ' Protein Added: ' + protein + ' Fat Added: ' + fat)
 	response = requests.request("POST", os.environ.get('NIGHTSCOUT_URL'), data=payload, headers=headers, params=querystring)
 	print(response.text)
+	sys.stdout.flush()

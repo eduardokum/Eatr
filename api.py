@@ -1,5 +1,6 @@
 import myfitnesspal
 import os
+import sys
 import time
 from datetime import datetime
 from nightscout import postCarbsToNightscout
@@ -15,11 +16,13 @@ def login(user, pw):
 
 def getDiet(client, date):
     print("getting diet")
+    sys.stdout.flush()
     day = ''
     try: 
         day = client.get_date(int(date[0]), int(date[1]), int(date[2]))
     except:
         print("api error for get_date()")
+        sys.stdout.flush()
     return day
 
 # Every 10 minutes, make get request to see if any changes were made
@@ -28,6 +31,7 @@ def getDiet(client, date):
 
 def compareDays(oldDay, newDay):
     print("comparing days")
+    sys.stdout.flush()
 
     latestMealIndex = -1
     different = False
@@ -48,6 +52,7 @@ def compareDays(oldDay, newDay):
 def mealDiff(old_day, new_day, mealIndex):
     print("getting difference")
     print('MealIndex: ' + str(mealIndex))
+    sys.stdout.flush()
 
     oldMeal = old_day.meals[mealIndex].totals
     changedMeal = new_day.meals[mealIndex].totals
