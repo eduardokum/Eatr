@@ -1,0 +1,26 @@
+{
+  "name": "Eatr",
+  "repository": "https://github.com/eduardokum/cgm-remote-monitor",
+  "env": {
+    "MFP_USERNAME": {
+      "description": "MyFitnessPal Username",
+      "value": "",
+      "required": true
+    },
+    "MFP_PASSWORD": {
+      "description": "MyFitnessPal Password",
+      "value": "",
+      "required": true
+    },
+    "NIGHTSCOUT_TOKEN": {
+      "description": "Nightscout Token",
+      "value": "",
+      "required": true
+    },
+    "NIGHTSCOUT_URL": {
+      "description": "Nightscout Url",
+      "value": "",
+      "required": true
+    }
+  }
+}
