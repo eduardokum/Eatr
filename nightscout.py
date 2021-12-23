@@ -2,12 +2,6 @@ import datetime
 import requests
 import json
 import os
-import sys
-from configparser import ConfigParser
-
-# reading config file
-parser = ConfigParser()
-parser.read('configs/config.ini')
 
 def postCarbsToNightscout(carbs, protein, fat):
 	tz = datetime.timezone(datetime.timedelta(hours=-3))
@@ -37,4 +31,3 @@ def postCarbsToNightscout(carbs, protein, fat):
 	print('Carbs Added: ' + carbs + ' Protein Added: ' + protein + ' Fat Added: ' + fat)
 	response = requests.request("POST", os.environ.get('NIGHTSCOUT_URL').rstrip("/") + '/api/v1/treatments', data=payload, headers=headers, params=querystring)
 	print(response.text)
-	sys.stdout.flush()

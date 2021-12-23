@@ -1,14 +1,8 @@
 import myfitnesspal
 import os
-import sys
 import time
 import datetime
 from nightscout import postCarbsToNightscout
-from configparser import ConfigParser
-
-# reading config file
-parser = ConfigParser()
-parser.read('configs/config.ini')
 
 def login(user, pw):
     client = myfitnesspal.Client(user, pw)
@@ -16,13 +10,11 @@ def login(user, pw):
 
 def getDiet(client, date):
     print("getting diet")
-    sys.stdout.flush()
     day = ''
     try: 
         day = client.get_date(int(date[0]), int(date[1]), int(date[2]))
     except:
         print("api error for get_date()")
-        sys.stdout.flush()
     return day
 
 # Every 10 minutes, make get request to see if any changes were made
@@ -30,8 +22,7 @@ def getDiet(client, date):
 # Check protein intake every x hours
 
 def compareDays(oldDay, newDay):
-    print("comparing days")
-    sys.stdout.flush()
+    print("comparing days old <> new")
 
     latestMealIndex = -1
     different = False
@@ -40,10 +31,13 @@ def compareDays(oldDay, newDay):
         if len(newDay.meals[i]) > 0:
             latestMealIndex = i
 
+    print("new has " + str(latestMealIndex + 1) + " meals")
+
     #Find which meals to compare, and always pay attention to snacks
     for i in range(len(newDay.meals)-1):
         if i >= latestMealIndex:
             if len(newDay.meals[i]) > len(oldDay.meals[i]):
+                print("new has " + str(i + 1) + " meal different")
                 different = True
 
     return latestMealIndex, different
@@ -52,7 +46,6 @@ def compareDays(oldDay, newDay):
 def mealDiff(old_day, new_day, mealIndex):
     print("getting difference")
     print('MealIndex: ' + str(mealIndex))
-    sys.stdout.flush()
 
     oldMeal = old_day.meals[mealIndex].totals
     changedMeal = new_day.meals[mealIndex].totals
@@ -104,6 +97,9 @@ def main():
 
         if c > 0:
             postCarbsToNightscout(str(c), str(p), str(f))
+
+
+        print("setting new old")
         old_day = new_day
 
 main()
