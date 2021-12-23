@@ -79,7 +79,7 @@ def main():
 
     client = login(user, pw)
 
-    date = (str(datetime.now().astimezone(tz))).split(' ')[0].split('-')
+    date = (str(datetime.datetime.now().astimezone(tz))).split(' ')[0].split('-')
     day = getDiet(client, date)
 
     old_day = day
