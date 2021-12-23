@@ -71,6 +71,7 @@ def mealDiff(old_day, new_day, mealIndex):
     return newCarbs - oldCarbs, newProtein - oldProtein, newFat - oldFat
 
 def main():
+    tz = datetime.timezone(datetime.timedelta(hours=-3))
 
     # Myfitnesspal login
     user = os.environ.get('MFP_USERNAME')
@@ -78,7 +79,7 @@ def main():
 
     client = login(user, pw)
 
-    date = (str(datetime.now())).split(' ')[0].split('-')
+    date = (str(datetime.now().astimezone(tz))).split(' ')[0].split('-')
     day = getDiet(client, date)
 
     old_day = day

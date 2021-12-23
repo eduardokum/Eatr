@@ -10,10 +10,10 @@ parser = ConfigParser()
 parser.read('configs/config.ini')
 
 def postCarbsToNightscout(carbs, protein, fat):
-	now = datetime.datetime.now()
-	nowInExpectedTimeZone = now + datetime.timedelta(hours=3)
-	nowDate = str(nowInExpectedTimeZone).split(' ')[0]
-	nowTime = str(nowInExpectedTimeZone).split(' ')[1]
+	tz = datetime.timezone(datetime.timedelta(hours=-3))
+	now = datetime.datetime.now().astimezone(tz)
+	nowDate = str(now).split(' ')[0]
+	nowTime = str(now).split(' ')[1]
 
 	querystring = {"token":os.environ.get('NIGHTSCOUT_TOKEN')}
 
