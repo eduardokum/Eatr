@@ -2,7 +2,7 @@ import myfitnesspal
 import os
 import sys
 import time
-from datetime import datetime
+import datetime
 from nightscout import postCarbsToNightscout
 from configparser import ConfigParser
 
