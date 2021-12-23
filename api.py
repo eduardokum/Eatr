@@ -76,7 +76,7 @@ def main():
         e = 0
 
         #Wait x seconds
-        time.sleep(5)
+        time.sleep(60)
 
         new_day = getDiet(client, date)
 
