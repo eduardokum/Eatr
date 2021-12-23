@@ -9,7 +9,6 @@ def login(user, pw):
     return client
 
 def getDiet(client, date):
-    print("getting diet")
     day = ''
     try: 
         day = client.get_date(int(date[0]), int(date[1]), int(date[2]))
@@ -22,16 +21,12 @@ def getDiet(client, date):
 # Check protein intake every x hours
 
 def compareDays(oldDay, newDay):
-    print("comparing days old <> new")
-
     latestMealIndex = -1
     different = False
 
     for i in range(len(newDay.meals)-1):
         if len(newDay.meals[i]) > 0:
             latestMealIndex = i
-
-    print("new has " + str(latestMealIndex + 1) + " meals")
 
     #Find which meals to compare, and always pay attention to snacks
     for i in range(len(newDay.meals)-1):
@@ -44,9 +39,6 @@ def compareDays(oldDay, newDay):
 
 #Checks difference between 2 days meals at a certain meal index
 def mealDiff(old_day, new_day, mealIndex):
-    print("getting difference")
-    print('MealIndex: ' + str(mealIndex))
-
     oldMeal = old_day.meals[mealIndex].totals
     changedMeal = new_day.meals[mealIndex].totals
     if len(oldMeal) > 0:
@@ -98,8 +90,6 @@ def main():
         if c > 0:
             postCarbsToNightscout(str(c), str(p), str(f))
 
-
-        print("setting new old")
         old_day = new_day
 
 main()

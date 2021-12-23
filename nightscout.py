@@ -30,4 +30,3 @@ def postCarbsToNightscout(carbs, protein, fat):
 
 	print('Carbs Added: ' + carbs + ' Protein Added: ' + protein + ' Fat Added: ' + fat)
 	response = requests.request("POST", os.environ.get('NIGHTSCOUT_URL').rstrip("/") + '/api/v1/treatments', data=payload, headers=headers, params=querystring)
-	print(response.text)
