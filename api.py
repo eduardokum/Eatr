@@ -32,7 +32,6 @@ def compareDays(oldDay, newDay):
     for i in range(len(newDay.meals)-1):
         if i >= latestMealIndex:
             if len(newDay.meals[i]) > len(oldDay.meals[i]):
-                print("new has " + str(i + 1) + " meal different")
                 different = True
 
     return latestMealIndex, different
