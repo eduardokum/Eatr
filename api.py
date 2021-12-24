@@ -79,6 +79,9 @@ def main():
 
         new_day = getDiet(client, date)
 
+        if new_day == '':
+            continue
+
         #Checks what the index of the latest meal is and if days are equivalent
         mealIndex, diff = compareDays(old_day, new_day)
 
