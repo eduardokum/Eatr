@@ -55,6 +55,7 @@ def mealDiff(old_day, new_day, mealIndex):
     return newCarbs - oldCarbs, newProtein - oldProtein, newFat - oldFat
 
 def main():
+    print("starting...")
     tz = datetime.timezone(datetime.timedelta(hours=-3))
 
     # Myfitnesspal login
