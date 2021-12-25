@@ -9,6 +9,7 @@ def login(user, pw):
     return client
 
 def getDiet(client, date):
+    print("getting diet")
     day = ''
     try: 
         day = client.get_date(int(date[0]), int(date[1]), int(date[2]))
@@ -21,6 +22,7 @@ def getDiet(client, date):
 # Check protein intake every x hours
 
 def compareDays(oldDay, newDay):
+    print("comparing days")
     latestMealIndex = -1
     different = False
 
@@ -38,6 +40,7 @@ def compareDays(oldDay, newDay):
 
 #Checks difference between 2 days meals at a certain meal index
 def mealDiff(old_day, new_day, mealIndex):
+    print("checking differences")
     oldMeal = old_day.meals[mealIndex].totals
     changedMeal = new_day.meals[mealIndex].totals
     if len(oldMeal) > 0:
@@ -81,6 +84,7 @@ def main():
         new_day = getDiet(client, date)
 
         if new_day == '':
+            print("empty continue")
             continue
 
         #Checks what the index of the latest meal is and if days are equivalent

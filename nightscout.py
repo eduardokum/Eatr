@@ -4,6 +4,7 @@ import json
 import os
 
 def postCarbsToNightscout(carbs, protein, fat):
+	print("posting to nightscout")
 	tz = datetime.timezone(datetime.timedelta(hours=-3))
 	now = datetime.datetime.now().astimezone(tz)
 	nowDate = str(now).split(' ')[0]
