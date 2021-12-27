@@ -9,7 +9,7 @@ def login(user, pw):
     return client
 
 def getDiet(client, date):
-    print("getting diet")
+    # print("getting diet")
     day = ''
     try: 
         day = client.get_date(int(date[0]), int(date[1]), int(date[2]))
@@ -17,12 +17,8 @@ def getDiet(client, date):
         print("api error for get_date()")
     return day
 
-# Every 10 minutes, make get request to see if any changes were made
-# Make method for comparing day objects
-# Check protein intake every x hours
-
 def compareDays(oldDay, newDay):
-    print("comparing days")
+    # print("comparing days")
     latestMealIndex = -1
     different = False
 
